@@ -17,7 +17,8 @@ public class SecurityConfig {
             .requestMatchers(
                 "/h2-console/**",
                 "/v3/api-docs/**",
-                "/swagger-ui/**")
+                "/swagger-ui/**",
+                "/api/**")
             .permitAll()
             .anyRequest().authenticated())
         .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin())) // H2 iframe 허용
