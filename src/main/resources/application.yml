@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: boardy
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+server:
+  port: 8080
