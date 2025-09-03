@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fromnowwon.boardy.entity.User;
+import com.fromnowwon.boardy.enums.UserRole;
 import com.fromnowwon.boardy.repository.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class AuthService {
         .email(email)
         .password(passwordEncoder.encode(password))
         .nickname(nickname)
+        .role(UserRole.USER) // 기본 권한 USER
         .build();
     return userRepository.save(user);
   }

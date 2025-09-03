@@ -1,8 +1,12 @@
 package com.fromnowwon.boardy.entity;
 
+import com.fromnowwon.boardy.enums.UserRole;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,4 +43,9 @@ public class User {
   @Column(nullable = false, unique = true, length = 50)
   @Schema(description = "닉네임", example = "john_doe", required = true)
   private String nickname;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  @Schema(description = "사용자 권한", example = "USER", required = true)
+  private UserRole role;
 }
