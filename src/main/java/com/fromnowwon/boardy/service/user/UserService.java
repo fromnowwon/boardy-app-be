@@ -1,5 +1,7 @@
 package com.fromnowwon.boardy.service.user;
 
+import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,11 @@ public class UserService {
   public User getUserById(Long id) {
     return userRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+  }
+
+  // 모든 사용자 조회 (관리자용)
+  public List<User> getAllUsers() {
+    return userRepository.findAll();
   }
 
   // 회원 정보 수정
