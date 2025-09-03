@@ -14,12 +14,15 @@ public class SecurityConfig {
     http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(
-                "/h2-console/**",
-                "/v3/api-docs/**",
-                "/swagger-ui/**",
-                "/api/**")
-            .permitAll()
+            // H2 콘솔과 Swagger는 모두 허용
+            .requestMatchers("/h2-console/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+
+            // ADMIN 전용 엔드포인트
+            .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+            // 나머지 USER/ADMIN 접근 허용
+            .requestMatchers("/api/users/**").hasAnyRole("USER", "ADMIN")
+
             .anyRequest().authenticated())
         .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin())) // H2 iframe 허용
         .formLogin(Customizer.withDefaults()); // 기본 로그인 폼 사용
