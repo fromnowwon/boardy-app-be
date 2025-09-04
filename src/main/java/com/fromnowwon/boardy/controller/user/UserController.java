@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fromnowwon.boardy.dto.user.UserResponse;
 import com.fromnowwon.boardy.entity.User;
 import com.fromnowwon.boardy.service.user.UserService;
 
@@ -27,19 +28,21 @@ public class UserController {
   // 내 정보 조회
   @Operation(summary = "내 정보 조회", description = "로그인한 사용자의 정보를 조회합니다.")
   @GetMapping("/me")
-  public User getMyInfo(
+  public UserResponse getMyInfo(
       @Parameter(description = "조회할 사용자 ID", required = true) @RequestParam Long userId) {
-    return userService.getUserById(userId);
+    User user = userService.getUserById(userId);
+    return new UserResponse(user);
   }
 
   // 내 정보 수정
   @Operation(summary = "내 정보 수정", description = "로그인한 사용자의 닉네임과 비밀번호를 수정합니다.")
   @PostMapping("/me")
-  public User updateMyInfo(
+  public UserResponse updateMyInfo(
       @Parameter(description = "수정할 사용자 ID", required = true) @RequestParam Long userId,
       @Parameter(description = "변경할 닉네임", required = true) @RequestParam String nickname,
       @Parameter(description = "변경할 비밀번호", required = true) @RequestParam String password) {
-    return userService.updateUser(userId, nickname, password);
+    User updatedUser = userService.updateUser(userId, nickname, password);
+    return new UserResponse(updatedUser);
   }
 
   // 회원 탈퇴
@@ -54,8 +57,9 @@ public class UserController {
   // 다른 회원 정보 조회
   @Operation(summary = "다른 회원 정보 조회", description = "ID로 다른 사용자의 정보를 조회합니다.")
   @GetMapping("/{id}")
-  public User getUserInfo(
+  public UserResponse getUserInfo(
       @Parameter(description = "조회할 사용자 ID", required = true) @PathVariable Long id) {
-    return userService.getUserById(id);
+    User user = userService.getUserById(id);
+    return new UserResponse(user);
   }
 }
