@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local} # 개발용 (추후 prod로 변경)
   application:
     name: boardy
   jackson:
