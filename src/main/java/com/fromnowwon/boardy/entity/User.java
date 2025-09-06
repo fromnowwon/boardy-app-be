@@ -33,7 +33,7 @@ public class User {
   private Long id;
 
   @Column(unique = true, nullable = false)
-  @Schema(description = "사용자 이메일", example = "user@example.com", required = true)
+  @Schema(description = "사용자 이메일", example = "user123@example.com", required = true)
   private String email;
 
   @Column(nullable = false)
@@ -41,7 +41,7 @@ public class User {
   private String password;
 
   @Column(nullable = false, unique = true, length = 50)
-  @Schema(description = "닉네임", example = "john_doe", required = true)
+  @Schema(description = "닉네임", example = "user123", required = true)
   private String nickname;
 
   @Enumerated(EnumType.STRING)

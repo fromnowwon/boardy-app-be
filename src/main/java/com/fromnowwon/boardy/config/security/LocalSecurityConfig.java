@@ -1,4 +1,4 @@
-package com.fromnowwon.boardy.config;
+package com.fromnowwon.boardy.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

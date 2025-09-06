@@ -2,6 +2,7 @@ package com.fromnowwon.boardy.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.fromnowwon.boardy.entity.User;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class DataInitializer implements CommandLineRunner {
 
   private final UserRepository userRepository;
+  private final BCryptPasswordEncoder passwordEncoder;
 
   @Override
   public void run(String... args) {
@@ -23,14 +25,14 @@ public class DataInitializer implements CommandLineRunner {
       // 일반 사용자
       userRepository.save(User.builder()
           .email("user1@example.com")
-          .password("user123")
+          .password(passwordEncoder.encode("user123"))
           .nickname("user1")
           .role(UserRole.USER) // 기본 권한
           .build());
 
       userRepository.save(User.builder()
           .email("user2@example.com")
-          .password("user123")
+          .password(passwordEncoder.encode("user123"))
           .nickname("user2")
           .role(UserRole.USER)
           .build());
@@ -38,7 +40,7 @@ public class DataInitializer implements CommandLineRunner {
       // 관리자
       userRepository.save(User.builder()
           .email("admin@example.com")
-          .password("admin123")
+          .password(passwordEncoder.encode("admin123"))
           .nickname("Admin")
           .role(UserRole.ADMIN)
           .build());
