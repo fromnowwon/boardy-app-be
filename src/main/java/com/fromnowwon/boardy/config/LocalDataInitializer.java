@@ -12,9 +12,9 @@ import com.fromnowwon.boardy.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@Profile("local") // local 프로파일에서만 실행
+@Profile("local")
 @RequiredArgsConstructor
-public class DataInitializer implements CommandLineRunner {
+public class LocalDataInitializer implements CommandLineRunner {
 
   private final UserRepository userRepository;
   private final BCryptPasswordEncoder passwordEncoder;

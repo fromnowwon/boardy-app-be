@@ -16,8 +16,11 @@ public class ProdSecurityConfig {
     http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-            // Swagger와 H2 콘솔은 운영에서 비공개 또는 관리자만 허용
-            .requestMatchers("/h2-console/**", "/swagger-ui/**", "/v3/api-docs/**").denyAll()
+            // Swagger 접근 시 ROLE_ADMIN 또는 로그인한 사용자만 허용
+            .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").hasRole("ADMIN")
+
+            // H2 콘솔 차단
+            .requestMatchers("/h2-console/**").denyAll()
 
             // 회원가입, 로그인은 인증 없이 허용
             .requestMatchers("/api/auth/**").permitAll()
@@ -30,8 +33,8 @@ public class ProdSecurityConfig {
 
             // 나머지는 인증 필요
             .anyRequest().authenticated())
-        .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin())) // H2 iframe 허용
-        .formLogin(Customizer.withDefaults()); // 기본 로그인 폼 사용
+        .formLogin(Customizer.withDefaults()) // 로그인 폼 사용
+        .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin())); // H2 iframe 허용
     return http.build();
   }
 }
