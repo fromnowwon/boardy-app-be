@@ -20,10 +20,10 @@ public class ProdDataInitializer implements CommandLineRunner {
   private final UserRepository userRepository;
   private final BCryptPasswordEncoder passwordEncoder;
 
-  @Value("${spring.admin.email}")
+  @Value("${admin.email}")
   private String adminEmail;
 
-  @Value("${spring.admin.password}")
+  @Value("${admin.password}")
   private String adminPassword;
 
   @Override

@@ -1,9 +1,4 @@
 spring:
-  jwt:
-    secret: ${JWT_SECRET}
-  admin:
-    email: admin@boardy.com
-    password: ${ADMIN_PASSWORD}
   datasource:
     url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres
     username: ${SUPABASE_USER}
@@ -16,3 +11,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET}
+
+admin:
+  email: admin@boardy.com
+  password: ${ADMIN_PASSWORD}
