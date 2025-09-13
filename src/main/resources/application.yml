@@ -2,7 +2,7 @@ spring:
   config:
     import: "optional:dotenv:.env"
   profiles:
-    active: ${SPRING_PROFILES_ACTIVE:local} # 개발용 (추후 prod로 변경)
+    active: ${SPRING_PROFILES_ACTIVE:local} # 개발용 (운영 서버에서는 환경변수에 따라 prod로 변경됨)
   application:
     name: boardy
   jackson:
