@@ -1,10 +1,15 @@
 spring:
+  jwt:
+    secret: ${JWT_SECRET}
   datasource:
-    url: jdbc:postgresql://localhost:5432/boardy
-    username: postgres
-    password:
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:6543/postgres
+    username: ${SUPABASE_USER}
+    password: ${SUPABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: false
