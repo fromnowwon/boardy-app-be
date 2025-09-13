@@ -9,7 +9,7 @@ Spring Boot + JPA 기반으로 사용자 인증, 권한 관리, 사용자 CRUD �
 - Spring Boot: 3.5.5
 - 로컬 DB: H2 (in-memory)
 - 운영 DB: PostgreSQL
-- Documentation: [Swagger](https://boardy-backend.onrender.com/swagger-ui/index.html) (Springdoc OpenAPI)
+- Documentation: Swagger (Springdoc OpenAPI)
 - JPA/Hibernate: Entity 중심 설계
   - 개발(local): ddl-auto=update
   - 운영(prod): ddl-auto=validate
